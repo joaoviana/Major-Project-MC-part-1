@@ -31,7 +31,7 @@ AFRAME.registerComponent("sound-source", {
         defaultSound.play();
         isPlaying = true;
       } else if (isPlaying == true && defaultSound) {
-        this.setAttribute("color", "pink");
+        this.setAttribute("color", "purple");
         defaultSound.pause();
         isPlaying = false;
       }
