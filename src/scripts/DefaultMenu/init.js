@@ -3,6 +3,9 @@ let defaultScene;
 let defaultSound;
 let defaultSoundSource;
 let defaultSource;
+let introSound;
+let introSoundSource;
+let introSource;
 let audioReady = false;
 
 function initAudioDefault() {
@@ -39,6 +42,48 @@ function initAudioDefault() {
   defaultSource = defaultScene.createSource();
   defaultSource.setGain(0.9);
   defaultSoundSource.connect(defaultSource.input);
+
+  //can add this into another function no?
+  // Create an audio element. Feed into audio graph.
+  introSound = document.createElement("audio");
+  introSound.src = "./intro.m4a";
+  introSound.crossOrigin = "anonymous";
+  
+  introSound.load();
+
+  introSoundSource = defaultAudioContext.createMediaElementSource(introSound);
+
+  // Create a Source, connect desired audio input to it.
+  introSource = defaultScene.createSource();
+  introSource.setGain(0.9);
+  introSoundSource.connect(introSource.input);
+  setTimeout(() => {
+    introSound.play();
+  }, 5000);
+
+  setTimeout(() => {
+    introSound.play();
+    defaultScene.setRoomProperties(
+      setAllRoomDimensions(20),
+      setAllRoomProperties('marble')
+    );
+  }, 50000);
+
+  setTimeout(() => {
+    defaultScene.setRoomProperties(
+      setAllRoomDimensions(20),
+      setAllRoomProperties('fiber-glass-insulation')
+    );
+  }, 61000);
+
+  setTimeout(() => {
+    defaultScene.setRoomProperties(
+      setAllRoomDimensions(20),
+      setAllRoomProperties('transparent')
+    );
+  }, 88000);
+
+
   audioReady = true;
 }
 
@@ -96,38 +141,26 @@ AFRAME.registerComponent("register-room-property", {
         setAllRoomDimensions(dimensions),
         setAllRoomProperties(material)
       );
-
     });
   }
 });
-
-
-// // high absorption, low reflection (Descending order)
-// 'transparent' -   'fiber-glass-insulation' - 'acoustic-ceiling-tiles' - 'curtain-heavy' -   'grass'
-// // almost no absorption, high reflection (Descending order)
-// 'water-or-ice-surface' - 'polished-concrete-or-tile' - 'marble' - 'metal' -   'wood-ceiling'
-
-// 'grass': absorbs well high frequency components, however it reflects most of low frequency components of a sound file
-
 
 AFRAME.registerComponent("default-menu-info", {
   init: function() {
     this.el.addEventListener("click", function(evt) {
       let sceneEl = document.querySelector("a-scene");
-      // make a menu visible 
-      // make two arrows visible
-        // low-reflection materials
-        // low-absorption materials
-      // simulate how this object would sound like in different scenarios. 
-      // The top row consists of high absorption/low reflection materials. Compare it with the bottom row!
-      // Try 'marble' and then 'curtain-heavy'. When the whole room is made of a curtain-like fabric material, doesn't the sound
-      // get a lot more attenuated than if the whole room was made of marble? The latter almost feels like these reflected sounds
-      // are sharply firing back at you in all directions right? 
-      // Materials in each row are in descending order.
+      let infoMenu = sceneEl.querySelector("#info-menu");
+      infoMenu.setAttribute('visible', 'true');
+    });
+  }
+});
 
-      //another menu on top: curious fact! 
-
-      // another one: try to leave the room, and come back ;) 
+AFRAME.registerComponent("default-menu-info-close", {
+  init: function() {
+    this.el.addEventListener("click", function(evt) {
+      let sceneEl = document.querySelector("a-scene");
+      let infoMenu = sceneEl.querySelector("#info-menu");
+      infoMenu.setAttribute('visible', 'false');
     });
   }
 });

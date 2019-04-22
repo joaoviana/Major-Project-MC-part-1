@@ -119,12 +119,19 @@
         height="0.6" rotation="0 -10 0" position="7 3.5 -6.1" geometry="">
         <a-text color="black" position="-1.5 0 0" value="What do these materials mean?"> </a-text>
       </a-plane>
-      <a-plane material="color:#312073;opacity:1" width="7" height="3" rotation="0 -10 0" position="5 1.5 -5.7"
+      <a-plane material="color:#312073;opacity:1" width="8" height="3" rotation="0 -10 0" position="5 1.5 -5.7"
         scale="1 1 0.05" geometry="" class="menu">
       </a-plane>
-      <a-plane id="info-menu" class="menu" material="color:pink;opacity:1" visible="false" width="5"
+      <a-plane id="info-menu" class="menu" material="color:pink;opacity:1" visible="false" width="5.3"
         height="5" rotation="0 -10 0" position="7 3.5 -5" geometry="">
-        <a-text color="black" position="-1.5 0 0" value="What do these materials mean?"> </a-text>
+        <a-text color="black" position="-2.4 2 0" value="Be in charge of simulating how this object would sound like in different scenarios. "> </a-text>
+        <a-text color="black" position="-2.4 1.4 0" value="The top row consists of high absorption/low reflection materials. Compare it with the bottom row!"> </a-text>
+        <a-text color="black" position="-2.4 0.3 0" value="Try 'marble' and then 'curtain-heavy'. When the whole room is made of a curtain-like fabric material, doesn't the sound get a lot more attenuated than if the whole room was made of marble? The latter almost feels like these reflected sounds are sharply firing back at you in all directions right? "> </a-text>
+        <a-text color="black" position="-2.4 -1.2 0" value="Materials in each row are in descending order of reflection power(bottom) or the lack of it(top)."> </a-text>
+        <a-plane default-menu-info-close class="menu" material="color:white;opacity:1" width="2"
+        height="0.6" rotation="0 -10 0" position="0 -1.9 0" geometry="">
+         <a-text color="black" position="0.3 0 0.01" value="Close"> </a-text>
+        </a-plane>
       </a-plane>
       <a-entity rotation="0 -10 0" position="3 0.7 -5.3">
         <a-plane position="-0.9 1.3 -.5" animate-default-menu-item-on-hover register-room-property scale=".7 .7 .03"
